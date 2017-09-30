@@ -1,0 +1,106 @@
+  我们把http协议中通信的两方称作Client和Server,Client向Server端经过http协议发送一
+个Request,Server端收到Request后经过一系列的处理返回Client一个Response.
+
+ 超文本传输协议
+
+ URL详解：
+ 示例： http://www.mywebsite.com/sj/test;id=8079?name=sviergn&x=true#stuff
+ 
+ Schema     -->http
+
+ host       -->www.mywebsite.com
+
+ path       -->/sj/test
+
+ URL params -->id=8079
+
+ Query String-->name=sviergn&x=true
+
+ Anchor      -->stuff
+
+ schema:指定底层使用的协议(如：http,https,ftp)
+ 
+ host:HTTP服务器的IP地址或者域名
+
+ port#:HTTP服务器的默认端口是80，这种情况下端口号可以省略。如果使用了别的
+       端口号，就必须指明，如：http://www.mywebsite.com:8080/
+
+ path:访问资源的路径
+
+ url-params:
+
+ query-string:发送给HTTP服务器的数据
+
+ anchor:锚
+
+ http协议是无状态的
+
+ 同一个客户端的这次请求和上次请求是没有对应关系，对http服务器来说，它并不知道这
+两个请求来自同一个客户端
+
+解决方法:Cookie机制来维护状态
+
+ Request消息的结构:三部分
+ 
+ 第一部分叫Request line(请求行) 第二部分叫http header(请求头) 第一部分叫body(请求体)
+
+ 请求行:包括http请求的种类，请求资源的路径，http协议版本
+
+ http header:http头部信息
+
+ body:发送给服务器的query信息
+
+ 当使用的是"GET"方法的时候，body是为空的(GET只能读取服务器上的信息， POST能写入)
+ 
+ Response消息的结构
+
+ 第一部分叫Response line(响应行) 第二部分叫人response header(响应头) 第一部分叫body(响应体)
+
+ Response line:协议版本、状态码、message
+
+ response header:request头信息
+
+ body:返回的请求资源主体
+
+ HTTP协议的请求方法
+
+ GET：请求获取Request-URI所标识的资源
+ 
+ POST:在Request-URI所标识的资源后附加新的数据
+
+ GET POST PUT DELETE对应着查，改，增，删
+
+ get和post的区别
+
+ 1、GET提交的数据会放在URL之后，以？分割URL和传输数据，参数之间以&相连
+    POST方法是把提交的数据放在HTTP包的Body中
+
+ 2、GET提交的数据大小有限制(因为浏览器对URL的长度有限制)
+    POST方法提交的数据没有限制
+
+ 3、GET方式需要使用Request.QueryString来取得变量的值
+    POST方式通过Request.Form来取得变量的值
+
+ 4、GET方式提交数据，会带来安全问题，如一个登录页面，通过GET提交数据时，用户名和密码
+   将会出现在URL上，如果页面可以被缓存或者其他人可以访问这台机器，就可以从历史记录获
+   得该用户的账号和密码
+
+ 状态码
+
+ Response消息中的第一行叫做状态码，由HTTP协议版本号，状态码，状态消息三部分组成
+ 
+ 状态码用来告诉HTTP客户端，HTTP服务器是否产生了预期的Response
+ 
+ HTTP/1.1中定义了5类状态码
+
+ 状态码由三位数字组成，第一个数字是响应的类别
+
+ 1XX：指示信息--表示请求已接收、继续处理
+
+ 2XX：成功--表示请求已被成功接收、理解、接受
+
+ 3XX: 重定向--要完成请求必须进行更进一步的操作
+
+ 4XX: 客户端错误--请求有语法错误或请求无法实现
+
+ 5XX：服务器端错误--服务器未能实现合法的请求
